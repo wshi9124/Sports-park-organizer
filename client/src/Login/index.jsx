@@ -1,6 +1,8 @@
 import React from "react";
 import Grid from '@mui/material/Grid';
-import { Button, TextField } from "@mui/material";
+import { Button, InputAdornment, TextField } from "@mui/material";
+import AccountCircleSharpIcon from '@mui/icons-material/AccountCircleSharp';
+import LockSharpIcon from '@mui/icons-material/LockSharp';
 
 function Login() {
     return(
@@ -21,7 +23,7 @@ function Login() {
                 alignItems="center" 
                 direction="column" 
                 justifyContent="space-between"
-                style={{padding: '10px'}}>
+                style={{padding: '10px', background:'#71A92C'}}>
                 < div/>
                 <div 
                     style={{
@@ -32,26 +34,38 @@ function Login() {
                         borderWidth: '2px',
                         borderStyle: 'solid',
                         borderColor: 'black',
-                        paddingTop: '150px',
-                        paddingBottom: '150px',
-                        paddingRight: '100px',
-                        paddingLeft: '100px'
+                        borderRadius: '25px',
+                        paddingTop: '100px',
+                        paddingBottom: '100px',
+                        paddingRight: '70px',
+                        paddingLeft: '70px',
+                        background:'#FFFFF9',
                         }}
                     >
                     <Grid container justifyContent="center">
                         <img 
                             src="/favicon.ico" 
-                            width= '150px' 
+                            width= '100px' 
                             alt="logo" 
                         />
                     </Grid>
-                    <TextField label="Username" margin="normal" />
-                    <TextField label="Password" margin="normal" />
+                    <h1 
+                        style={{
+                            textAlign:'center', 
+                            margin:'10px', 
+                            fontSize:'60px',
+                            color:'green'
+                            }}>
+                        Park-O
+                    </h1>
+                    <h2 style={{textAlign:'center', margin:'2px'}}>Your #1 Park event organizer</h2>
+                    <TextField label="Username" margin="normal" InputProps={{startAdornment: <InputAdornment><AccountCircleSharpIcon/></InputAdornment>}}/>
+                    <TextField label="Password" margin="normal" InputProps={{startAdornment: <InputAdornment><LockSharpIcon/></InputAdornment>}} />
                     <div style={{ height: '20px'}}/>
                     <Button color="primary" variant="contained">
                         Log In
                     </Button>
-                    <Button>Not a member? Sign up here!</Button>
+                    <Button style={{marginBottom: '30px'}}>Not a member? Sign up here!</Button>
                 </div>
                 <div/>
             </Grid>
@@ -61,3 +75,4 @@ function Login() {
 }
 
 export default Login
+
