@@ -6,7 +6,8 @@ import AccountCircleSharpIcon from '@mui/icons-material/AccountCircleSharp';
 import LockSharpIcon from '@mui/icons-material/LockSharp';
 
 function Login() {
-    const navigate = useNavigate();
+    const navigate = useNavigate()
+    
     return(
         <div>
             <Grid container style={{ minHeight: '100vh'}}>
@@ -63,6 +64,7 @@ function Login() {
                     <h2 style={{textAlign:'center', margin:'2px'}}>Your #1 Park event organizer</h2>
                     <TextField 
                         label="Username" 
+                        type="text"
                         margin="normal" 
                         InputProps={{
                             startAdornment: (
@@ -74,6 +76,7 @@ function Login() {
                     />
                     <TextField 
                         label="Password" 
+                        type="password"
                         margin="normal" 
                         InputProps={{
                             startAdornment: (
