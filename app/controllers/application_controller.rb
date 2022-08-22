@@ -10,7 +10,7 @@ class ApplicationController < ActionController::API
     @current_user ||= User.find_by(id: session[:user_id])
   end
 
-  def authorize
+  def authorized
     unless current_user
       render json: { message: 'Not authorized' }, status: 401
     end
@@ -21,7 +21,7 @@ class ApplicationController < ActionController::API
   end
 
   def invalid_record_error(error)
-    render json: {error: error.record.errors.full_messages}, status: 422
+    render json: {errors: error.record.errors.full_messages}, status: 422
   end
 end
 
