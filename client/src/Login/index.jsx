@@ -26,7 +26,7 @@ function Login() {
                 alignItems="center" 
                 direction="column" 
                 justifyContent="space-between"
-                style={{padding: '10px', background:'#71A92C'}}>
+                style={{padding: '10px'}}>
                 < div/>
                 <div 
                     style={{
@@ -42,7 +42,6 @@ function Login() {
                         paddingBottom: '100px',
                         paddingRight: '70px',
                         paddingLeft: '70px',
-                        background:'#FFFFF9',
                         }}
                     >
                     <Grid container justifyContent="center">

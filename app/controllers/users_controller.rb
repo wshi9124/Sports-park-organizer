@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
     def create
         user= User.create!(user_params)
-        render json: {message: "Account successfully made"}, status: :created
+        session[:user_id]= user.id
+        render json: user, status: :created
     end
 
     def user_params
-        params.permit(:email, :username, :password )
+        params.permit(:email, :username, :password, password_confirmation )
     end
 end
