@@ -1,10 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Grid from '@mui/material/Grid';
 import { Button, InputAdornment, TextField } from "@mui/material";
 import AccountCircleSharpIcon from '@mui/icons-material/AccountCircleSharp';
 import LockSharpIcon from '@mui/icons-material/LockSharp';
 
 function Login() {
+    const navigate = useNavigate();
     return(
         <div>
             <Grid container style={{ minHeight: '100vh'}}>
@@ -59,13 +61,37 @@ function Login() {
                         Park-O
                     </h1>
                     <h2 style={{textAlign:'center', margin:'2px'}}>Your #1 Park event organizer</h2>
-                    <TextField label="Username" margin="normal" InputProps={{startAdornment: <InputAdornment><AccountCircleSharpIcon/></InputAdornment>}}/>
-                    <TextField label="Password" margin="normal" InputProps={{startAdornment: <InputAdornment><LockSharpIcon/></InputAdornment>}} />
+                    <TextField 
+                        label="Username" 
+                        margin="normal" 
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <AccountCircleSharpIcon/>
+                                </InputAdornment>
+                            ),
+                        }}
+                    />
+                    <TextField 
+                        label="Password" 
+                        margin="normal" 
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <LockSharpIcon/>
+                                </InputAdornment>
+                            ),
+                        }} 
+                    />
                     <div style={{ height: '20px'}}/>
                     <Button color="primary" variant="contained">
                         Log In
                     </Button>
-                    <Button style={{marginBottom: '30px'}}>Not a member? Sign up here!</Button>
+                    <Button 
+                        style={{marginBottom: '30px'}} 
+                        onClick={()=>{navigate('/createAccount')}}>
+                        Not a member? Sign up here!
+                    </Button>
                 </div>
                 <div/>
             </Grid>
