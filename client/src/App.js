@@ -28,14 +28,13 @@ function App() {
   },[])
 
   return (
-
     <Routes>
     <Route path="/" element={<Login />} />
     <Route path="/login" element={<Login />} />
     <Route path="/createAccount" element={<CreateAccount />} />
     <Route path="/home" element={<HomePage />}/>
   </Routes>
-  );
+  )
 }
 
 export default App;

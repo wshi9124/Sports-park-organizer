@@ -28,19 +28,23 @@ function Login() {
                 res.json()
                 .then(data => {
                     setError('')
-                    console.log("login data", data)
+                    console.log(data)
                     setUser(data)
                     navigate('/home')
                 })
             } else {
                 res.json()
-                .then(({error}) => setError(error))
+                .then(({error}) => {
+                    setError(error)
+                    setUsername('')
+                    setPassword('')
+                })
             }
         })
     }
 
     return(
-        <div>
+        <div onClick={() => setError('')}>
             <Grid container style={{ minHeight: '100vh'}}>
                 <Grid item xs={12} sm={6}>
                 <img 

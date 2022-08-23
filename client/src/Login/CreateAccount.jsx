@@ -27,11 +27,13 @@ function CreateAccount() {
     const handleLogin = (e) => {
         e.preventDefault()
         const formData = new FormData()
+            if (avatar) {
+                formData.append('avatar', avatar)
+            }
             formData.append('email', email)
             formData.append('username', username)
             formData.append('password', password)
             formData.append('password_confirmation', confirmPassword)
-            formData.append('avatar', avatar)
            
         fetch('/users',{
             method: "POST",
@@ -48,7 +50,11 @@ function CreateAccount() {
                     })
             }else {
                 res.json()
-                .then(({errors}) => setErrors(errors))
+                .then(({errors}) => {
+                    setErrors(errors)
+                    setPassword('')
+                    setConfirmPassword('')
+                })
             }    
         })
     }
@@ -71,7 +77,7 @@ function CreateAccount() {
             <Typography component="h1" variant="h5">
                 Create Account
             </Typography>
-            <p style={{color: 'red', textAlign:'center'}}>{errors ? errors.map(error => <span>{error},  </span>) : null}</p>
+            <p style={{color: 'red', textAlign:'center'}}>{errors ? errors.map(error => <span key={error}>{error},  </span>) : null}</p>
             <Box component="form" onSubmit={handleLogin} sx={{ mt: 3 }}>
                 <Grid container spacing={5}>
                 <Grid item xs={12}>
