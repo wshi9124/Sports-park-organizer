@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :user_events
+  resources :events
   resources :users, only:[:create]
 
   #To log in
