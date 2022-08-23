@@ -12,8 +12,6 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import IconButton from '@mui/material/IconButton';
-import Stack from '@mui/material/Stack';
 
 function CreateAccount() {
     const navigate = useNavigate()
@@ -22,24 +20,22 @@ function CreateAccount() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
+    const [avatar, setAvatar] = useState(null)
     const [errors, setErrors] = useState([])
     const theme = createTheme();
     
     const handleLogin = (e) => {
         e.preventDefault()
-        const user = {
-            email,
-            username,
-            password,
-            password_confirmation: confirmPassword
-        }
+        const formData = new FormData()
+            formData.append('email', email)
+            formData.append('username', username)
+            formData.append('password', password)
+            formData.append('password_confirmation', confirmPassword)
+            formData.append('avatar', avatar)
+           
         fetch('/users',{
             method: "POST",
-            headers:{
-                'Content-Type': 'application/json',
-                'Accepts': 'application/json'
-            },
-            body:JSON.stringify(user)
+            body: formData
         })
         .then(res => {
             if(res.ok){
@@ -47,6 +43,7 @@ function CreateAccount() {
                     .then(data => {
                         setErrors([])
                         setUser(data)
+                        console.log(data)
                         navigate('/home')
                     })
             }else {
@@ -85,7 +82,6 @@ function CreateAccount() {
                     onChange={(e) => setUsername(e.target.value)}
                     />
                 </Grid>
-
                 <Grid item xs={12}>
                     <TextField
                     fullWidth
@@ -113,27 +109,24 @@ function CreateAccount() {
                     />
                 </Grid>
                 </Grid>
-                <Stack direction="row" alignItems="center" spacing={2}>
-                <Button variant="contained" component="label">
-                    Upload Image 
-                <input hidden accept="image/*" multiple type="file" />
-                </Button>
-                
-                <IconButton color="primary" aria-label="upload picture" component="label">
-                <input hidden accept="image/*" type="file" />
-                </IconButton>
-                </Stack>
+                <div style={{textAlign:"center", marginTop:"30px"}}>
+                    <input 
+                        type="file" 
+                        accept="image/*" 
+                        onChange={e => setAvatar(e.target.files[0])}
+                    />
+                </div>
                 <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-                >
-                Sign Up
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    sx={{ mt: 3, mb: 2 }}
+                    >
+                    Sign Up
                 </Button>
                 <Grid container justifyContent="flex-end">
                 <Grid item>
-                    <Link href="#" variant="body2">
+                    <Link onClick={() => navigate("/login")}>
                     Already have an account? Sign in
                     </Link>
                 </Grid>

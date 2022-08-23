@@ -28,6 +28,7 @@ function Login() {
                 res.json()
                 .then(data => {
                     setError('')
+                    console.log("login data", data)
                     setUser(data)
                     navigate('/home')
                 })

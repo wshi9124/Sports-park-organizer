@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::API
   include ActionController::Cookies
+  include ActiveStorage::Blob::Analyzable
   before_action :authorized
   rescue_from ActiveRecord::RecordNotFound, with: :not_found_error
   rescue_from ActiveRecord::RecordInvalid, with: :invalid_record_error
