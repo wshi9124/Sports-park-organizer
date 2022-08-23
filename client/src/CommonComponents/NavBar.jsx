@@ -1,4 +1,6 @@
-import * as React from 'react';
+import React, {useContext} from 'react';
+import AuthContext from '../AuthProvider';
+import LogoutButton from './LogoutButton';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -19,26 +21,7 @@ import ListItemText from '@mui/material/ListItemText';
 import HomeIcon from '@mui/icons-material/Home';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 
-const drawerWidth = 240;
-
-const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
-  ({ theme, open }) => ({
-    flexGrow: 1,
-    padding: theme.spacing(3),
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginLeft: `-${drawerWidth}px`,
-    ...(open && {
-      transition: theme.transitions.create('margin', {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-      marginLeft: 0,
-    }),
-  }),
-);
+const drawerWidth = 350;
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
@@ -66,7 +49,8 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
 }));
 
-export default function NavBar() {
+function NavBar() {
+  const { user } = useContext(AuthContext)
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -88,12 +72,13 @@ export default function NavBar() {
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
-            sx={{ mr: 2, ...(open && { display: 'none' }) }}
+            sx={{ mr: 4, ...(open && { display: 'none' }) }}
           >
-            <MenuIcon />
+            <MenuIcon style={{height:'30px', width:'30px'}}/>
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Navigation Menu 
+          <Typography variant="h3" noWrap component="div"style={{paddingBottom:'10px', fontSize:"37px"}}>
+            {user.avatar_url ? <img src={user.avatar_url} alt="profile pic" style={{ height:'55px', width:'55px', marginRight:'20px', marginTop:'10px', marginBottom:'-10px', borderRadius:'50%'}}/> : <img src="./emptyProfilePic.png" alt="profile pic" style={{height:'55px', marginRight:'20px', marginTop:'10px', marginBottom:'-10px'}}/> }
+            Welcome {user.username}
           </Typography>
         </Toolbar>
       </AppBar>
@@ -111,8 +96,8 @@ export default function NavBar() {
         open={open}
       >
         <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+          <IconButton onClick={handleDrawerClose} style={{height:'75px'}}>
+            {theme.direction === 'ltr' ? <ChevronLeftIcon style={{height:'30px', width:'30px'}}/> : <ChevronRightIcon />}
           </IconButton>
         </DrawerHeader>
         <Divider />
@@ -121,15 +106,18 @@ export default function NavBar() {
             <ListItem key={text} disablePadding>
               <ListItemButton>
                 <ListItemIcon>
-                  {index % 2 === 0 ? <HomeIcon /> : <EmojiEventsIcon />}
+                  {index % 10 === 0 ? <HomeIcon /> : <EmojiEventsIcon />}
                 </ListItemIcon>
-                <ListItemText primary={text} />
+                <ListItemText primary={text} style={{fontSize:'100px'}} />
               </ListItemButton>
             </ListItem>
           ))}
+          <LogoutButton/>
         </List>
         <Divider />
       </Drawer>
     </Box>
   );
 }
+
+export default NavBar
