@@ -1,9 +1,17 @@
-import React from "react";
+import React, {useState} from "react";
+import NavBar from "../Common Componenets/NavBar";
+import Event from "./Event";
+
+
 
 function HomePage() {
-    return(
-        <h1>Hi</h1>
-    )
-}
 
+    const [events, setEvents] = useState([]);
+    return(
+        <div>
+        <NavBar/>
+        <Event/>
+        </div>
+  );
+}
 export default HomePage
