@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import AuthContext from "../AuthProvider"
+import AuthContext from "../../AuthProvider";
 import Grid from '@mui/material/Grid';
 import { Button, InputAdornment, TextField } from "@mui/material";
 import AccountCircleSharpIcon from '@mui/icons-material/AccountCircleSharp';
@@ -28,7 +28,6 @@ function Login() {
                 res.json()
                 .then(data => {
                     setError('')
-                    console.log(data)
                     setUser(data)
                     navigate('/home')
                 })

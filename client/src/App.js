@@ -2,9 +2,11 @@ import React, { useContext, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import AuthContext from './AuthProvider';
-import HomePage from "./HomePage";
-import Login from "./Login";
-import CreateAccount from "./Login/CreateAccount";
+import Login from "./pages/Login";
+import CreateAccount from "./pages/Login/CreateAccount";
+import Home from "./pages/Home";
+import MyEvent from "./pages/MyEvents";
+import CreateNewEvent from "./pages/CreateNewEvent";
 
 function App() {
   const { setUser } = useContext(AuthContext)
@@ -32,7 +34,9 @@ function App() {
     <Route path="/" element={<Login />} />
     <Route path="/login" element={<Login />} />
     <Route path="/createAccount" element={<CreateAccount />} />
-    <Route path="/home" element={<HomePage />}/>
+    <Route path="/home" element={<Home />}/>
+    <Route path="/myEvents" element={<MyEvent />} />
+    <Route path="/createNewEvent" element={<CreateNewEvent />} />
   </Routes>
   )
 }

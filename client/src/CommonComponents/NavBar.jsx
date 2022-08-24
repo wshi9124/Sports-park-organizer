@@ -1,4 +1,5 @@
 import React, {useContext} from 'react';
+import { useNavigate } from 'react-router-dom';
 import AuthContext from '../AuthProvider';
 import LogoutButton from './LogoutButton';
 import { styled, useTheme } from '@mui/material/styles';
@@ -19,7 +20,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import HomeIcon from '@mui/icons-material/Home';
-import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
+
 
 const drawerWidth = 350;
 
@@ -51,6 +52,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 function NavBar() {
   const { user } = useContext(AuthContext)
+  const navigate= useNavigate()
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -102,16 +104,30 @@ function NavBar() {
         </DrawerHeader>
         <Divider />
         <List>
-          {['Home', 'Events', 'Favorites', 'Create Event'].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
+            <ListItem key="Home" disablePadding >
+              <ListItemButton onClick={() => navigate("/home")}>
                 <ListItemIcon>
-                  {index % 10 === 0 ? <HomeIcon /> : <EmojiEventsIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} style={{fontSize:'100px'}} />
+                  <HomeIcon /> 
+                </ListItemIcon >
+                <ListItemText primary="Home" />
               </ListItemButton>
             </ListItem>
-          ))}
+            <ListItem key="My Events" disablePadding >
+              <ListItemButton onClick={() => navigate("/myEvents")}>
+                <ListItemIcon>
+                  <HomeIcon /> 
+                </ListItemIcon >
+                <ListItemText primary="My events" />
+              </ListItemButton>
+            </ListItem>
+            <ListItem key="Create New Event" disablePadding >
+              <ListItemButton onClick={() => navigate("/createNewEvent")}>
+                <ListItemIcon>
+                  <HomeIcon /> 
+                </ListItemIcon >
+                <ListItemText primary="Create New Event" />
+              </ListItemButton>
+            </ListItem>
           <LogoutButton/>
         </List>
         <Divider />

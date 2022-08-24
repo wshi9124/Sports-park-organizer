@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import AuthContext from '../AuthProvider';
+import AuthContext from '../../AuthProvider';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -45,7 +45,6 @@ function CreateAccount() {
                     .then(data => {
                         setErrors([])
                         setUser(data)
-                        console.log(data)
                         navigate('/home')
                     })
             }else {
