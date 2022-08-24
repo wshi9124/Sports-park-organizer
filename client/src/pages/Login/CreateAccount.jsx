@@ -115,10 +115,11 @@ function CreateAccount() {
                 </Grid>
                 </Grid>
                 <div style={{textAlign:"center", marginTop:"30px"}}>
+                    <p style={{marginRight:"60px"}}>Upload Profile Pic</p>
                     <input 
                         type="file" 
                         accept="image/*" 
-                        onChange={e => setAvatar(e.target.files[0])}
+                        onChange={(e) => setAvatar(e.target.files[0])}
                     />
                 </div>
                 <Button
