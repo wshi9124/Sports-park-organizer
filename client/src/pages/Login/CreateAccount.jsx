@@ -64,7 +64,7 @@ function CreateAccount() {
             <CssBaseline />
             <Box
             sx={{
-                marginTop: 8,
+                marginTop: 25,
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
@@ -73,7 +73,7 @@ function CreateAccount() {
             <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                 <LockOutlinedIcon />
             </Avatar>
-            <Typography component="h1" variant="h5">
+            <Typography component="h1" variant="h4">
                 Create Account
             </Typography>
             <p style={{color: 'red', textAlign:'center'}}>{errors ? errors.map(error => <span key={error}>{error},  </span>) : null}</p>
