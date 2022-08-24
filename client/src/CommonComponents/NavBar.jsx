@@ -20,6 +20,8 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import HomeIcon from '@mui/icons-material/Home';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import AddIcon from '@mui/icons-material/Add';
 
 
 const drawerWidth = 350;
@@ -98,7 +100,7 @@ function NavBar() {
         open={open}
       >
         <DrawerHeader>
-          <IconButton onClick={handleDrawerClose} style={{height:'75px'}}>
+          <IconButton onClick={handleDrawerClose} style={{height:'74px'}}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon style={{height:'30px', width:'30px'}}/> : <ChevronRightIcon />}
           </IconButton>
         </DrawerHeader>
@@ -115,7 +117,7 @@ function NavBar() {
             <ListItem key="My Events" disablePadding >
               <ListItemButton onClick={() => navigate("/myEvents")}>
                 <ListItemIcon>
-                  <HomeIcon /> 
+                  <AccountBoxIcon />
                 </ListItemIcon >
                 <ListItemText primary="My events" />
               </ListItemButton>
@@ -123,7 +125,7 @@ function NavBar() {
             <ListItem key="Create New Event" disablePadding >
               <ListItemButton onClick={() => navigate("/createNewEvent")}>
                 <ListItemIcon>
-                  <HomeIcon /> 
+                  <AddIcon />
                 </ListItemIcon >
                 <ListItemText primary="Create New Event" />
               </ListItemButton>
