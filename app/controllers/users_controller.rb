@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
     skip_before_action :authorized, only: [:create]
 
+    def show
+        render json: current_user, include: ["user_events", "user_events.event"]
+    end
+
     def create
         user= User.create!(user_params)
         session[:user_id]= user.id
@@ -8,8 +12,8 @@ class UsersController < ApplicationController
     end
 
     def update
-        user= current_user.update_attribute(:avatar, params[:avatar])
-        render json: find_user
+        current_user.update_attribute(:avatar, params[:avatar])
+        render json: current_user
     end
 
     private
@@ -18,8 +22,4 @@ class UsersController < ApplicationController
         params.permit(:email, :username, :password, :password_confirmation, :avatar)
     end
 
-    def find_user
-        User.find(params[:id])
-    end
-    
 end

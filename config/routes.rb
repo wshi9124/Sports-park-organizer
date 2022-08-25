@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :user_events
   resources :events, only:[:index, :create]
-  resources :users, only:[:create, :update]
+  resources :users, only:[:create, :update, :show]
 
   #To log in
   post "/login", to: "sessions#create" 
