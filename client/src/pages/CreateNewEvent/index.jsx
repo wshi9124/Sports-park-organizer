@@ -15,14 +15,23 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 function CreateNewEvent() {
     const theme = createTheme();
+    const [name, setName] = useState('')
+    const [sport, setSport] = useState('')
+    const [description, setDescription] = useState('')
+    const [image, setImage] = useState(null)
     const [location, setLocation]= useState('')
     const [lat, setLat] = useState(40.730610)
     const [lng, setLng] = useState(-73.935242)
+    const [errors, setErrors] = useState([])
     
-
     const createEventForm= (e) => {
         e.preventDefault()
-        setLocation(location => location + " ")
+        const formData = new FormData()
+        if (image) {
+            formData.append('image', image)
+        }
+        formData.append('name', name)
+
     }
     
     return(
@@ -51,18 +60,24 @@ function CreateNewEvent() {
                     <TextField
                     fullWidth
                     label="Name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                     />
                 </Grid>
                 <Grid item xs={12}>
                     <TextField
                     fullWidth
                     label="Sport"
+                    value={sport}
+                    onChange={(e) => setSport(e.target.value)}
                     />
                 </Grid>
                 <Grid item xs={12}>
                     <TextField
                     fullWidth
                     label="Description"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
                     multiline
                     rows={3}
                     />
@@ -77,10 +92,11 @@ function CreateNewEvent() {
                 />
                 </Grid>
                 <div style={{textAlign:"center", marginTop:"30px"}}>
-                <p style={{marginRight:"60px", marginTop:"40px", marginBottom:"0px"}}>Upload Event Pic (required)</p>
+                <p style={{marginRight:"60px", marginTop:"40px", marginBottom:"0px"}}>Upload Event Pic</p>
                     <input 
                         type="file" 
                         accept="image/*" 
+                        onChange={(e) => setImage(e.target.files[0])}
                     />
                 </div>
                 <Button

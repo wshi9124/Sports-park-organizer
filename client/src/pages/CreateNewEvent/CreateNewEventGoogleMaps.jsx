@@ -38,6 +38,7 @@ function CreateNewEventGoogleMaps({location, setLocation, lat, setLat, lng, setL
                 <TextField
                     fullWidth
                     label="Location"
+                    value={location}
                     onChange={(e) => setLocation(e.target.value)}
                 />
             <Button 

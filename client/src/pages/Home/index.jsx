@@ -12,7 +12,7 @@ import TextField from '@mui/material/TextField'
 function Home() {
   const [eventData, setEventData]= useState([])
   const [search, setSearch]= useState('')
-  
+
   useEffect(() => {
     fetch('/events')
     .then(res => {
@@ -23,7 +23,7 @@ function Home() {
     })
   },[])
 
-  const filteredSearch = eventData.filter(event => event.name.toLowerCase().includes(search.toLowerCase())) 
+  const filteredSearch = eventData.filter(event => event.name.toLowerCase().includes(search.toLowerCase())).reverse()
 
   const renderEventData = filteredSearch.map(event => 
     <Grid item lg={3} key={event.id}>

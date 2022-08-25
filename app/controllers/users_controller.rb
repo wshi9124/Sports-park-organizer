@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     end
 
     def update
-        user= find_user.update!(update_user_params)
+        user= current_user.update_attribute(:avatar, params[:avatar])
         render json: find_user
     end
 
@@ -16,10 +16,6 @@ class UsersController < ApplicationController
 
     def user_params
         params.permit(:email, :username, :password, :password_confirmation, :avatar)
-    end
-
-    def update_user_params
-        params.permit(:avatar, :id)
     end
 
     def find_user

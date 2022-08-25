@@ -7,6 +7,7 @@ import CreateAccount from "./pages/Login/CreateAccount";
 import Home from "./pages/Home";
 import MyEvent from "./pages/MyEvents";
 import CreateNewEvent from "./pages/CreateNewEvent";
+import PrivateRoutes from "./utils/PrivateRoute";
 
 function App() {
   const { setUser } = useContext(AuthContext)
@@ -24,20 +25,22 @@ function App() {
           navigate('/home')
         })
       }
-
     })
   //eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
   return (
     <Routes>
-    <Route path="/" element={<Login />} />
-    <Route path="/login" element={<Login />} />
-    <Route path="/createAccount" element={<CreateAccount />} />
-    <Route path="/home" element={<Home />}/>
-    <Route path="/myEvents" element={<MyEvent />} />
-    <Route path="/createNewEvent" element={<CreateNewEvent />} />
-  </Routes>
+      <Route path="/" element={<Login />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/createAccount" element={<CreateAccount />} />
+      <Route element={<PrivateRoutes/>}>
+        <Route path="/home" element={<Home />}/>
+        <Route path="/myEvents" element={<MyEvent />} />
+        <Route path="/createNewEvent" element={<CreateNewEvent />} />
+      </Route>
+      <Route path="*" element={<Login/>} />
+    </Routes>
   )
 }
 
