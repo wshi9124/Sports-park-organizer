@@ -25,7 +25,6 @@ function CreateNewEventGoogleMaps({location, setLocation, lat, setLat, lng, setL
         .then((response) => response.json())
         .then((data) => {
             if (data.status === "OK") {
-                console.log(data)
                 setLat(data.results[0].geometry.location.lat)
                 setLng(data.results[0].geometry.location.lng)
             }

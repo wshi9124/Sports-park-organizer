@@ -67,7 +67,7 @@ function NavBar() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-
+  
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />

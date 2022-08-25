@@ -22,22 +22,26 @@ function Home() {
       }
     })
   },[])
+  console.log(eventData)
 
-  const filteredSearch = eventData.filter(event => event.name.toLowerCase().includes(search.toLowerCase())).reverse()
+  const filteredSearch = eventData.filter(event => event.name.toLowerCase().includes(search.toLowerCase())||event.sport.toLowerCase().includes(search.toLowerCase())).reverse()
 
   const renderEventData = filteredSearch.map(event => 
-    <Grid item lg={3} key={event.id}>
-    <Card sx={{ maxWidth:"auto", maxHeight:350, minHeight:350 }} style={{overflow:"auto"}}>
+    <Grid item xs={6} lg={3} key={event.id}>
+    <Card sx={{ maxWidth:"auto", maxHeight:370, minHeight:370 }} style={{overflow:"auto"}}>
       <CardActionArea >
         <CardMedia
           component="img"
-          height="200"
-          image="https://lp-cms-production.imgix.net/2021-04/GettyRF_537912746.jpg?auto=format&q=40&ar=16%3A9&fit=crop&w=1946"
-          alt="green iguana"
+          height="230"
+          image= {event.image_url ? event.image_url : "./noImageAvailable.png" }
+          alt= {event.name}
         />
         <CardContent>
           <Typography gutterBottom variant="h4" component="div">
             {event.name}
+          </Typography>
+          <Typography gutterBottom variant="h6" component="div">
+            {event.sport} Posted on
           </Typography>
           <Typography variant="body2" color="text.secondary">
             {event.description}
@@ -54,9 +58,9 @@ function Home() {
       <Typography gutterBottom variant="h3" style={{marginTop:'100px', textAlign:'center'}}>
         All Events
       </Typography>
-      <Grid style={{marginLeft:'650px', marginRight:'650px', marginBottom:'30px'}}>
+      <Grid style={{marginBottom:'30px', display:'flex', justifyContent:'center'}}>
         <TextField 
-          fullWidth 
+          style={{width:'600px'}}
           label="Search by name or sport"
           value={search}
           onChange={(e) => setSearch(e.target.value) }
