@@ -14,10 +14,11 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 
 function CreateNewEvent() {
+    const theme = createTheme();
     const [location, setLocation]= useState('')
     const [lat, setLat] = useState(40.730610)
     const [lng, setLng] = useState(-73.935242)
-    const theme = createTheme();
+    
 
     const createEventForm= (e) => {
         e.preventDefault()
