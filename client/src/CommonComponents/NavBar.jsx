@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import AuthContext from '../AuthProvider';
 import LogoutButton from './LogoutButton';
 import { styled, useTheme } from '@mui/material/styles';
+import UpdateProfileModal from './UpdateProfilePicModal.jsx';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -22,6 +23,7 @@ import ListItemText from '@mui/material/ListItemText';
 import HomeIcon from '@mui/icons-material/Home';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import AddIcon from '@mui/icons-material/Add';
+
 
 
 const drawerWidth = 350;
@@ -130,6 +132,7 @@ function NavBar() {
                 <ListItemText primary="Create New Event" />
               </ListItemButton>
             </ListItem>
+            <UpdateProfileModal />
           <LogoutButton/>
         </List>
         <Divider />

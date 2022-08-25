@@ -15,12 +15,13 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 function CreateNewEvent() {
     const [location, setLocation]= useState('')
-    // const [lat, setLat] = useState(40.730610)
-    // const [lng, setLng] = useState(-73.935242)
+    const [lat, setLat] = useState(40.730610)
+    const [lng, setLng] = useState(-73.935242)
     const theme = createTheme();
 
     const createEventForm= (e) => {
         e.preventDefault()
+        setLocation(location => location + " ")
     }
     
     return(
@@ -68,10 +69,10 @@ function CreateNewEvent() {
                 <CreateNewEventGoogleMaps 
                     location={location} 
                     setLocation={setLocation}
-                    // lat={lat}
-                    // setLat={setLat}
-                    // lng={lng}
-                    // setLng={setLng}
+                    lat={lat}
+                    setLat={setLat}
+                    lng={lng}
+                    setLng={setLng}
                 />
                 </Grid>
                 <div style={{textAlign:"center", marginTop:"30px"}}>
