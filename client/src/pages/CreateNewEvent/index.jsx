@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import CreateNewEventGoogleMaps from "./CreateNewEventGoogleMaps";
 import NavBar from "../../CommonComponents/NavBar";
 import Avatar from '@mui/material/Avatar';
@@ -15,6 +16,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 function CreateNewEvent() {
     const theme = createTheme();
+    const navigate = useNavigate()
     const [name, setName] = useState('')
     const [sport, setSport] = useState('')
     const [description, setDescription] = useState('')
@@ -27,11 +29,32 @@ function CreateNewEvent() {
     const createEventForm= (e) => {
         e.preventDefault()
         const formData = new FormData()
-        if (image) {
-            formData.append('image', image)
-        }
-        formData.append('name', name)
+            if (image) {
+                formData.append('image', image)
+            }
+            formData.append('name', name)
+            formData.append('sport', sport)
+            formData.append('description', description)
+            formData.append('location', location)
 
+        fetch('/events',{
+            method: "POST",
+            body: formData
+        })
+        .then(res => {
+            if(res.ok){
+                res.json()
+                .then(data => {
+                    setErrors([])
+                    navigate('/home')
+                })
+            }else {
+                res.json()
+                .then(({errors}) => {
+                    setErrors(errors)
+                })
+            }
+        })            
     }
     
     return(
@@ -54,6 +77,7 @@ function CreateNewEvent() {
             <Typography component="h1" variant="h4">
                 Create New Event
             </Typography>
+            <p style={{color: 'red', textAlign:'center'}}>{errors ? errors.map(error => <span key={error}>{error},  </span>) : null}</p>
             <Box component="form" sx={{ mt: 3 }} onSubmit={createEventForm}>
                 <Grid container spacing={4}>
                 <Grid item xs={12}>

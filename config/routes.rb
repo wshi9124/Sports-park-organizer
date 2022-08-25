@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :user_events
-  resources :events, only:[:index]
+  resources :events, only:[:index, :create]
   resources :users, only:[:create, :update]
 
   #To log in
