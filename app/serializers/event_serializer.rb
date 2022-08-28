@@ -1,6 +1,7 @@
 class EventSerializer < ActiveModel::Serializer
   attributes :id, :name, :location, :sport, :description, :image_url, :created_at
   has_many :user_events
+  has_many :users
 
   def image_url
     if object.image.attached?

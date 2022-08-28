@@ -21,14 +21,14 @@ function CreateNewEventGoogleMaps({location, setLocation, lat, setLat, lng, setL
     }
     
     const geocodeLocation = (e) => {
-        fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=$${location.replaceAll(/[\s,]+/g, "+")}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`)
+        fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${location.replaceAll(/[\s,]+/g, "+")}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`)
         .then((response) => response.json())
         .then((data) => {
             if (data.status === "OK") {
                 setLat(data.results[0].geometry.location.lat)
                 setLng(data.results[0].geometry.location.lng)
-            }
                 map.panTo({lat:lat, lng:lng})
+            } 
         })
     } 
 

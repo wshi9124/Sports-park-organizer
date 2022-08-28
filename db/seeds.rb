@@ -15,15 +15,21 @@ u2=User.create!(email:"fiveonfive@yahoo.com", username:"ArmyOfOne", password:"11
 u3=User.create!(email:"leftthenright@aol.com", username:"BlindFury", password:"5567", password_confirmation:"5567")
 u4=User.create!(email:"upordown@gmail.com", username:"LostAndFound", password:"7789", password_confirmation:"7789")
 u5=User.create!(email:"cuphalfempty@aol.com", username:"Thirsty", password:"8890", password_confirmation:"8890")
-
+u6=User.create!(email:"wshi@gmail.com", username:"Willie", password:"1234567", password_confirmation:"1234567")
 puts "Users Seeded"
 
 puts "Seeding User Events"
 
-UserEvent.create!(user_id: u1.id, event_id: e3.id, admin: true)
-UserEvent.create!(user_id: u2.id, event_id: e2.id, admin: true)
-UserEvent.create!(user_id: u3.id, event_id: e1.id, admin: true)
-UserEvent.create!(user_id: u4.id, event_id: e4.id, admin: true)
-UserEvent.create!(user_id: u5.id, event_id: e5.id, admin: true)
+UserEvent.create!(user_id: u1.id, event_id: e3.id, admin: true, status:"accepted")
+UserEvent.create!(user_id: u2.id, event_id: e2.id, admin: true, status:"accepted")
+UserEvent.create!(user_id: u3.id, event_id: e1.id, admin: true, status:"accepted")
+UserEvent.create!(user_id: u4.id, event_id: e4.id, admin: true, status:"accepted")
+UserEvent.create!(user_id: u5.id, event_id: e5.id, admin: true, status:"accepted")
+UserEvent.create!(user_id: u6.id, event_id: e2.id, admin: false, status:"pending")
+UserEvent.create!(user_id: u6.id, event_id: e3.id, admin: false, status:"pending")
+UserEvent.create!(user_id: u6.id, event_id: e4.id, admin: false, status:"pending")
+UserEvent.create!(user_id: u6.id, event_id: e5.id, admin: false, status:"accepted")
 
 puts "User Events Seeded"
+
+
