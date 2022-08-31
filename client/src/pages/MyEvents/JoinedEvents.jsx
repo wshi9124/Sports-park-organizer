@@ -29,7 +29,7 @@ function JoinedEvents({joinedEvents}) {
                     {user.event.description}
                 </Typography>
                 <Typography variant="body2" color="text.secondary" style={{textAlign:'right'}}>
-                    {new Date(user.event.created_at).toDateString()}
+                    Posted on {new Date(user.event.created_at).toDateString()}
                 </Typography>
                 </CardContent>
             </CardActionArea>

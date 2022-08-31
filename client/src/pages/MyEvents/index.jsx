@@ -21,7 +21,7 @@ function MyEvent() {
             }
         })
     },[])
-
+    
     const adminEvents = myEvents.user_events ? myEvents.user_events.filter(userEvent => {
         return userEvent.admin === true
     }) : null

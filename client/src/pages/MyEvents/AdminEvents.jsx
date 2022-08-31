@@ -28,7 +28,6 @@ function AdminEvents({adminEvents}) {
                     image= {user.event.image_url ? user.event.image_url : "./noImageAvailable.png" }
                     alt= {user.event.name}
                     />
-                    <Button variant="contained" color="error" style={{float:'right'}} onClick={() => deleteAdminPost(user.event.id)}>Delete Post</Button>
                     <CardContent>
                     <Typography gutterBottom variant="h4" component="div" style={{marginBottom:'0px'}}>
                         {user.event.name}
@@ -40,11 +39,13 @@ function AdminEvents({adminEvents}) {
                         {user.event.description}
                     </Typography>
                     <Typography variant="body2" color="text.secondary" style={{textAlign:'right'}}>
-                        {new Date(user.event.created_at).toDateString()}
+                        Posted on {new Date(user.event.created_at).toDateString()}
                     </Typography>
                     </CardContent>
                 </CardActionArea>
                 </Card>
+                <Button variant="contained" color="error" style={{float:'right'}} onClick={() => deleteAdminPost(user.event.id)}>Delete Post</Button>
+                <Button variant="contained" color="info" style={{float:'right'}}> Edit Event</Button>
             </Grid>
          ))
    
