@@ -27,7 +27,7 @@ function CreateNewEventGoogleMaps({location, setLocation, lat, setLat, lng, setL
             if (data.status === "OK") {
                 setLat(data.results[0].geometry.location.lat)
                 setLng(data.results[0].geometry.location.lng)
-                map.panTo({lat:lat, lng:lng})
+                map.panTo({lat:data.results[0].geometry.location.lat, lng:data.results[0].geometry.location.lng})
             } 
         })
     } 
