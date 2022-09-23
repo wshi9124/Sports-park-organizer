@@ -58,7 +58,7 @@ function CreateNewEvent() {
     }
     
     return(
-        <div>
+        <div style={{marginBottom:'20px'}}>
         <NavBar/>
         <ThemeProvider theme={theme}>
         <Container component="main" maxWidth="xl">
@@ -71,14 +71,14 @@ function CreateNewEvent() {
                 alignItems: 'center',
             }}
             >
-            <Avatar sx={{ m: 3, bgcolor: 'secondary.main' }}>
+            <Avatar sx={{ m: 2, bgcolor: 'secondary.main' }}>
                 <CreateIcon />
             </Avatar>
             <Typography component="h1" variant="h4">
                 Create New Event
             </Typography>
             <p style={{color: 'red', textAlign:'center'}}>{errors ? errors.map(error => <span key={error}>{error},  </span>) : null}</p>
-            <Box component="form" sx={{ mt: 3 }} onSubmit={createEventForm}>
+            <Box component="form" sx={{ mt: 2 }} onSubmit={createEventForm}>
                 <Grid container spacing={4}>
                 <Grid item xs={12}>
                     <TextField

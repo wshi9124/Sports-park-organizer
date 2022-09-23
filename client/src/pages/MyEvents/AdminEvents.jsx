@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 import Grid from '@mui/material/Grid'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
@@ -7,15 +7,17 @@ import Typography from '@mui/material/Typography'
 import { CardActionArea } from '@mui/material'
 import Button from '@mui/material/Button';
 
-function AdminEvents({adminEvents}) {
-    
+function AdminEvents({adminEvents, setRefresh}) {
+
     const deleteAdminPost= (id) => {
         fetch(`events/${id}`, {
         method: "DELETE",
         headers: {
             'Content-type': 'application/json'
-        }
-    })
+             }
+        }).then(() => setRefresh(state => !state))
+        // const updatedAdminData= adminEvents.filter(event => event.id !== adminEvents.id)
+        // setAdminEvents(updatedAdminData)
     }
 
         const renderAdminEvents = adminEvents?.map(user => (

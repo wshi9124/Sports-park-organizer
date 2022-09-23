@@ -16,8 +16,8 @@ function Home() {
   const [lng, setLng] = useState(-73.935242)
   const [eventData, setEventData]= useState([])
   const [search, setSearch]= useState('')
-  const [errors, setErrors]= useState('')
   const [open, setOpen] = React.useState(false);
+  const [refresh, setRefresh] =useState(true)
 
   const handleOpen = (event) => {
       setOpen(true)
@@ -36,7 +36,7 @@ function Home() {
         .then(data => setEventData(data))
       }
     })
-  },[])
+  },[refresh])
 
   useEffect(() => {
     if (currentCard){
@@ -81,35 +81,9 @@ function Home() {
     </Card>
     </Grid>
   )
-  
-  const handleRequestToJoinButton= () => {
-    fetch('/user_events',{
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        event_id: currentCard.id
-      })
-  })
-  .then(res => {
-      if(res.ok){
-          res.json()
-          .then(data => {
-              setErrors([])
-              console.log(data)
-          })
-      }else {
-          res.json()
-          .then(({errors}) => {
-              setErrors(errors)
-          })
-      }
-  })  
-  }
 
   return(
-    <div>
+    <div style={{marginTop:'100px'}}>
       <NavBar/>
       <Typography gutterBottom variant="h3" style={{textAlign:'center'}}>
         All Events
@@ -122,15 +96,14 @@ function Home() {
           onChange={(e) => setSearch(e.target.value) }
         />
       </Grid>
-      <Grid container spacing={4} style={{paddingRight:'20px', paddingLeft:'20px'}}>
+      <Grid container spacing={4} style={{paddingRight:'30px', paddingLeft:'30px'}}>
         {renderEventData}
       </Grid>
       <HomeModal 
         open={open} 
         handleClose={handleClose} 
         currentCard={currentCard} 
-        errors={errors} 
-        handleRequestToJoinButton= {handleRequestToJoinButton}
+        setRefresh={setRefresh}
         lat={lat}
         lng={lng}
       />

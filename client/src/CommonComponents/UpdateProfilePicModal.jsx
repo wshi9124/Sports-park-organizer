@@ -28,7 +28,7 @@ function UpdateProfileModal() {
   const handleClose = () => setOpen(false)
   const { user, setUser } = useContext(AuthContext)
   const [avatar, setAvatar] = useState(null)
-  const [errors, setErrors] = useState([])
+  const [error, setError] = useState('')
  
   const handleChangeProfilePic = (e) => {
     e.preventDefault()
@@ -43,14 +43,12 @@ function UpdateProfileModal() {
       if(res.ok){
         res.json()
         .then(data => {
-          setErrors([])
+          setOpen(false)
+          setError('')
           setUser(data)
         })
       }else {
-        res.json()
-        .then(({errors}) => {
-          setErrors(errors)
-        })
+          setError('Please try again')
       }
     })
   }
@@ -75,7 +73,7 @@ function UpdateProfileModal() {
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Update Profile Pic
           </Typography>
-          <p style={{color: 'red', textAlign:'center'}}>{errors ? errors.map(error => <span key={error}>{error},  </span>) : null}</p>
+          <p style={{color: 'red', textAlign:'center'}}>{error ? error : null}</p>
           <form onSubmit={handleChangeProfilePic}>
             <input 
               type="file" 
