@@ -7,6 +7,7 @@ import CreateAccount from "./pages/Login/CreateAccount";
 import Home from "./pages/Home";
 import MyEvent from "./pages/MyEvents";
 import CreateNewEvent from "./pages/CreateNewEvent";
+import ChatRoom from "./pages/ChatRoom";
 import PrivateRoutes from "./utils/PrivateRoute";
 
 function App() {
@@ -17,7 +18,6 @@ function App() {
   useEffect(()=>{
     fetch('/me')
     .then(res => {
-
       if(res.ok) {
         res.json()
         .then(data => {
@@ -38,6 +38,7 @@ function App() {
         <Route path="/home" element={<Home />}/>
         <Route path="/myEvents" element={<MyEvent />} />
         <Route path="/createNewEvent" element={<CreateNewEvent />} />
+        <Route path="/chat" element={<ChatRoom />} />
       </Route>
       <Route path="*" element={<Login/>} />
     </Routes>

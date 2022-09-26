@@ -107,6 +107,7 @@ function Home() {
         lat={lat}
         lng={lng}
       />
+      <div style={{marginTop:'20px'}}/>
     </div>
   )
 }

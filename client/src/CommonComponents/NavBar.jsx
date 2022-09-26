@@ -23,6 +23,7 @@ import ListItemText from '@mui/material/ListItemText';
 import HomeIcon from '@mui/icons-material/Home';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import AddIcon from '@mui/icons-material/Add';
+import ChatIcon from '@mui/icons-material/Chat';
 
 
 
@@ -121,7 +122,7 @@ function NavBar() {
                 <ListItemIcon>
                   <AccountBoxIcon />
                 </ListItemIcon >
-                <ListItemText primary="My events" />
+                <ListItemText primary="My Events" />
               </ListItemButton>
             </ListItem>
             <ListItem key="Create New Event" disablePadding >
@@ -130,6 +131,14 @@ function NavBar() {
                   <AddIcon />
                 </ListItemIcon >
                 <ListItemText primary="Create New Event" />
+              </ListItemButton>
+            </ListItem>
+            <ListItem key="Chat" disablePadding >
+              <ListItemButton onClick={() => navigate("/chat")}>
+                <ListItemIcon>
+                  <ChatIcon />
+                </ListItemIcon >
+                <ListItemText primary="Event Chat" />
               </ListItemButton>
             </ListItem>
             <UpdateProfileModal />
