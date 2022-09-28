@@ -37,14 +37,9 @@ function MyEvent() {
             }
         })
     },[user.id, refresh])
-    
-
-    console.log('adminEvents', adminEvents)
-    console.log('joinedEvents', joinedEvents)
-    console.log('pendingEvents', pendingEvents)
 
     return(
-        <div style={{marginBottom:'80px'}}>
+        <div style={{marginBottom:'20px'}}>
             <NavBar/>
             <Typography gutterBottom variant="h3" style={{marginTop:'100px', textAlign:'center'}}>
                 Admin Events

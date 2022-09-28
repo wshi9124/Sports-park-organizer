@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
+import AuthContext from "../../AuthProvider";
 import NavBar from "../../CommonComponents/NavBar";
 import { makeStyles } from '@mui/styles';
 import Paper from '@mui/material/Paper';
@@ -42,7 +43,35 @@ const useStyles = makeStyles({
   });
   
 function ChatRoom() {
+    const { user } =useContext(AuthContext)
     const classes = useStyles();
+    const [eventData, setEventData] = useState([])
+
+    useEffect(() => {
+        fetch(`/users/${user.id}`)
+        .then(res => {
+          if (res.ok) {
+            res.json()
+            .then(data => {
+                console.log(data.user_events)
+                setEventData(data.user_events)
+            })
+          }
+        })
+      },[user.id])
+
+    const renderChatEvents = eventData?.map(event => {
+        if (event.status === "accepted") {
+        return(
+            <ListItem button key={event.id}>
+                <ListItemIcon>
+                    <Avatar alt={event.event.name} src={event.event.image_url} />
+                </ListItemIcon>
+                <ListItemText primary={event.name}>{event.event.name}</ListItemText>
+            </ListItem>
+        )}
+        else return ''
+    })
 
     return(
         <div>
@@ -51,28 +80,14 @@ function ChatRoom() {
             <Grid container component={Paper} className={classes.chatSection}>
                 <Grid item xs={2.5} className={classes.borderRight500}>
                     <Grid item xs={12} style={{padding: '10px'}}>
-                        <TextField id="outlined-basic-email" label="Search" variant="outlined" fullWidth />
+                        <TextField label="Search Event By Name" variant="outlined" fullWidth />
                     </Grid>
-                    {/* <List>
-                        <ListItem button key="RemySharp">
-                            <ListItemIcon>
-                                <Avatar alt="Remy Sharp" src="https://material-ui.com/static/images/avatar/1.jpg" />
-                            </ListItemIcon>
-                            <ListItemText primary="Remy Sharp">Remy Sharp</ListItemText>
-                        </ListItem>
-                        <ListItem button key="Alice">
-                            <ListItemIcon>
-                                <Avatar alt="Alice" src="https://material-ui.com/static/images/avatar/3.jpg" />
-                            </ListItemIcon>
-                            <ListItemText primary="Alice">Alice</ListItemText>
-                        </ListItem>
-                        <ListItem button key="CindyBaker">
-                            <ListItemIcon>
-                                <Avatar alt="Cindy Baker" src="https://material-ui.com/static/images/avatar/2.jpg" />
-                            </ListItemIcon>
-                            <ListItemText primary="Cindy Baker">Cindy Baker</ListItemText>
-                        </ListItem>
-                    </List> */}
+                    <Typography style={{paddingLeft: '11px'}}>
+                        Events
+                    </Typography>
+                    <List>
+                        {renderChatEvents}
+                    </List>
                 </Grid>
                 <Grid item xs={7.5}>
                     <List className={classes.messageArea}>
@@ -112,7 +127,7 @@ function ChatRoom() {
                         <Grid item xs={11}>
                             <TextField id="outlined-basic-email" label="Type Something" fullWidth />
                         </Grid>
-                        <Grid xs={1} align="right">
+                        <Grid item xs={1} align="right">
                             <Fab color="primary" aria-label="add"><SendIcon /></Fab>
                         </Grid>
                     </Grid>
@@ -120,7 +135,10 @@ function ChatRoom() {
 
                 <Grid item xs={2} className={classes.borderLeft500}>
                     <Grid item xs={12} style={{padding: '10px'}}>
-                        <Typography variant="body1" color="text.secondary">
+                        <Typography>
+                            Admin
+                        </Typography>
+                        <Typography>
                             Members
                         </Typography>
                     </Grid>
