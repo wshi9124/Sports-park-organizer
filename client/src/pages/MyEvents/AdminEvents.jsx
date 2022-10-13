@@ -1,4 +1,7 @@
 import React from 'react'
+import { useContext } from 'react'
+import AuthContext from '../../AuthProvider'
+import { useNavigate } from 'react-router-dom'
 import Grid from '@mui/material/Grid'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
@@ -8,6 +11,8 @@ import { CardActionArea } from '@mui/material'
 import Button from '@mui/material/Button';
 
 function AdminEvents({adminEvents, setRefresh}) {
+    const navigate = useNavigate()
+    const { setIndividualEvent } = useContext(AuthContext)
 
     const deleteAdminPost= (id) => {
         fetch(`events/${id}`, {
@@ -19,6 +24,11 @@ function AdminEvents({adminEvents, setRefresh}) {
         // const updatedAdminData= adminEvents.filter(event => event.id !== adminEvents.id)
         // setAdminEvents(updatedAdminData)
     }
+
+    const handleEditButton= (user) => {
+     setIndividualEvent(user)
+     navigate('/editEvent')
+    }   
 
         const renderAdminEvents = adminEvents?.map(user => (
             <Grid item xs={6} lg={3} key={user.event.id}>
@@ -47,7 +57,7 @@ function AdminEvents({adminEvents, setRefresh}) {
                 </CardActionArea>
                 </Card>
                 <Button variant="contained" color="error" style={{float:'right'}} onClick={() => deleteAdminPost(user.event.id)}>Delete Post</Button>
-                <Button variant="contained" color="info" style={{float:'right'}}> Edit Event</Button>
+                <Button variant="contained" color="info" style={{float:'right'}} onClick={() => handleEditButton(user)}> Manage Event</Button>
             </Grid>
          ))
    

@@ -101,7 +101,7 @@ function HomeModal({open, handleClose, currentCard, setRefresh, lat, lng}) {
                 <Typography variant="h6" style={{textAlign:'center', marginRight:'5px'}}>
                   Status -
                 </Typography>
-                {ue?.status ? <p>{ue.status}</p> : <Button size="small" onClick={handleRequestToJoinButton}>Request to join</Button>}
+                {ue?.status ? <p style={{marginTop:'3px'}}>{ue.status}</p> : <Button size="small" onClick={handleRequestToJoinButton}>Request to join</Button>}
               </div>
                 <Typography variant="h4" style={{textAlign:'center'}}>
                   Admin
