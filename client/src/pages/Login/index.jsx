@@ -82,20 +82,12 @@ function Login() {
                     <Grid container justifyContent="center">
                         <img 
                             src="/favicon.ico" 
-                            width= '100px' 
+                            width= '175px' 
                             alt="logo" 
+                            style={{borderRadius:'15%'}}
                         />
                     </Grid>
-                    <h1 
-                        style={{
-                            textAlign:'center', 
-                            margin:'10px', 
-                            fontSize:'60px',
-                            color:'green'
-                            }}>
-                        Park-O
-                    </h1>
-                    <h2 style={{textAlign:'center', margin:'2px'}}>Your #1 Park event organizer</h2>
+                    <h2 style={{textAlign:'center', margin:'2px', marginTop:'20px'}}>Your #1 Park event organizer</h2>
                     <p style={{color: 'red', textAlign:'center'}}>{error ? error : null}</p>
                     <form onSubmit={handleLogin}>
                         <TextField 
