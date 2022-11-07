@@ -87,6 +87,7 @@ function Login() {
                             style={{borderRadius:'15%'}}
                         />
                     </Grid>
+                    <h2 style={{textAlign:'center', margin:'2px', marginTop:'20px'}}> Park-O</h2>
                     <h2 style={{textAlign:'center', margin:'2px', marginTop:'20px'}}>Your #1 Park event organizer</h2>
                     <p style={{color: 'red', textAlign:'center'}}>{error ? error : null}</p>
                     <form onSubmit={handleLogin}>
