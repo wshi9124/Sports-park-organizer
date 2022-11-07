@@ -1,4 +1,4 @@
-# Park-O (Sports-park-organizer)
+# Park-O (Park event organizer)
 Park-O is a social media site where users can organize park sporting events. This website features a real time messaging system that utilizes websockets and an access system where event admins can accept or decline members to their events. 
 
 
