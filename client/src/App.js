@@ -6,7 +6,7 @@ import Login from "./pages/Login";
 import CreateAccount from "./pages/Login/CreateAccount";
 import Home from "./pages/Home";
 import MyEvent from "./pages/MyEvents";
-import EditEvent from "./pages/EditEvent";
+import EditUsers from "./pages/EditUsers";
 import CreateNewEvent from "./pages/CreateNewEvent";
 import ChatRoom from "./pages/ChatRoom";
 import PrivateRoutes from "./utils/PrivateRoute";
@@ -38,7 +38,7 @@ function App() {
       <Route element={<PrivateRoutes/>}>
         <Route path="/home" element={<Home />}/>
         <Route path="/myEvents" element={<MyEvent />} />
-        <Route path="/editEvent" element={< EditEvent/>} />
+        <Route path="/editUsers" element={< EditUsers/>} />
         <Route path="/createNewEvent" element={<CreateNewEvent />} />
         <Route path="/chat" element={<ChatRoom />} />
       </Route>
@@ -47,4 +47,4 @@ function App() {
   )
 }
 
-export default App;
+export default App; 

@@ -28,8 +28,7 @@ function HomeModal({open, handleClose, currentCard, setRefresh, lat, lng}) {
   useEffect(() => {
     setUe(currentCard?.user_events.find(ue => user.id === ue.user_id))
   }, [currentCard, user.id])
-  console.log(ue)
-
+  
     const [ libraries ] = useState(['places'])
     const { isLoaded } = useJsApiLoader({
       googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,

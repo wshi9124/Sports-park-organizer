@@ -27,7 +27,7 @@ function AdminEvents({adminEvents, setRefresh}) {
 
     const handleEditButton= (user) => {
      setIndividualEvent(user)
-     navigate('/editEvent')
+     navigate('/editUsers')
     }   
 
         const renderAdminEvents = adminEvents?.map(user => (
@@ -57,7 +57,7 @@ function AdminEvents({adminEvents, setRefresh}) {
                 </CardActionArea>
                 </Card>
                 <Button variant="contained" color="error" style={{float:'right'}} onClick={() => deleteAdminPost(user.event.id)}>Delete Post</Button>
-                <Button variant="contained" color="info" style={{float:'right'}} onClick={() => handleEditButton(user)}> Manage Event</Button>
+                <Button variant="contained" color="info" style={{float:'right'}} onClick={() => handleEditButton(user)}> Manage Users</Button>
             </Grid>
          ))
    
