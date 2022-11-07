@@ -4,4 +4,16 @@ class UserEventsController < ApplicationController
         render json: current_user, status: 201
     end
 
+    def update 
+        userEvent= UserEvent.find(params[:id])
+        userEvent.update!(user_event_params)
+        render json: userEvent, status: 202
+    end 
+
+    private
+
+    def user_event_params
+        params.permit(:status)
+    end
+    
 end

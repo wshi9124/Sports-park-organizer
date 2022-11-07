@@ -12,6 +12,7 @@ import Button from '@mui/material/Button';
 function EditUsers() {
     const { individualEvent } = useContext(AuthContext)
     const [pendingUsers, setPendingUsers] = useState([])
+    const [refresh, setRefresh] =useState(true)
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -24,10 +25,32 @@ function EditUsers() {
                 })
             }
         })
-    },[individualEvent.event_id])
+    },[individualEvent.event_id,refresh])
 
-    console.log("pending", pendingUsers)
-    
+    const handleAcceptButton= (id) => {
+        fetch(`/user_events/${id}`, {
+            method: 'PATCH',
+            body: JSON.stringify({
+              status: 'accepted',
+            }),
+            headers: {
+              'Content-type': 'application/json; charset=UTF-8',
+            },
+          }).then(() => setRefresh(state => !state))
+    }
+
+    const handleDeclineButton= (id) => {
+        fetch(`/user_events/${id}`, {
+            method: 'PATCH',
+            body: JSON.stringify({
+              status: 'declined',
+            }),
+            headers: {
+              'Content-type': 'application/json; charset=UTF-8',
+            },
+          }).then(() => setRefresh(state => !state))
+    }
+
     // eslint-disable-next-line array-callback-return
     const renderPendingUsers= pendingUsers?.map( user => {
         if (user.status === 'pending'){
@@ -42,12 +65,14 @@ function EditUsers() {
                         {user.user.username}
                     </Typography>
                     <Button 
+                        onClick={() => handleAcceptButton(user.id)}
                         variant="contained" 
                         color="success"
                         style={{marginLeft:'20px'}}
                         >Accept
                     </Button>
-                    <Button 
+                    <Button
+                        onClick={() => handleDeclineButton(user.id)}
                         color="error"
                         style={{marginLeft:'20px'}}
                         >Decline

@@ -40,7 +40,7 @@ function HomeModal({open, handleClose, currentCard, setRefresh, lat, lng}) {
     }
 
     const renderAdmins= currentCard?.user_events?.filter(user => user.admin===true).map(user => (
-        <div key={user.id} style={{display:'flex', justifyContent:'center', padding:'1px'}}>
+        <div key={user.id} style={{display:'flex', justifyContent:'center', padding:'8px'}}>
             <Avatar src={user.user.avatar_url} sx={{ width: 30, height: 30 }}/>
             <Typography 
               variant="h6" 
@@ -50,8 +50,8 @@ function HomeModal({open, handleClose, currentCard, setRefresh, lat, lng}) {
         </div>
       ))
 
-      const renderNonAdmins= currentCard?.user_events?.filter(user => user.admin===false && user.admin==="accepted" ).map(user => (
-          <div key={user.id} style={{display:'flex', justifyContent:'center', padding:'1px'}}>
+      const renderNonAdmins= currentCard?.user_events?.filter(user => user.admin===false && user.status==="accepted" ).map(user => (
+          <div key={user.id} style={{display:'flex', justifyContent:'center', padding:'8px'}}>
             <Avatar src={user.user.avatar_url} sx={{ width: 30, height: 30 }}/>
             <Typography 
               variant="h6" 
