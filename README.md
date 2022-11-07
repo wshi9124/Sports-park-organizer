@@ -1,6 +1,6 @@
 # System dependencies
 ######
-Ruby: 3.1.2
+Ruby: 2.7.4
 ######
 Node: 16.17.1
 ######
