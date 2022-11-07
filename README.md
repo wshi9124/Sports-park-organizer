@@ -4,11 +4,11 @@ Park-O is a social media site where users can organize park sporting events. Thi
 
 # Technologies
 ######
-Frontend: TypeScript, React, JavaScript, Tailwind CSS, Local Storage (to store cart items)
+Frontend: React, JavaScript, Material UI
 ######
-Backend: Ruby on Rails, PostgreSQL, Active Storage (to store product images), Action Mailer (to send out greeting emails), Bcrypt (to salt and hash password), Active Records Validations
+Backend: Ruby on Rails, PostgreSQL, Active Storage (to store product images), Bcrypt (to salt and hash password), Active Records Validations
 ######
-Other: Google Maps API, Google Geocoding API, Amazon Web Services (EC2)
+Other: Google Maps API, Google Geocoding API
 
 # Security
 This project uses sessions to authenticate users and Bcrypt to encrypt passwords. 
