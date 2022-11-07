@@ -14,6 +14,11 @@ Other: Google Maps API, Google Geocoding API
 This project uses sessions to authenticate users and Bcrypt to encrypt passwords. 
 There are protected routes (private routes) for any pages that require the user to login.
 
+# Features 
+######
+
+# Tables 
+
 # System dependencies
 ######
 Ruby: 2.7.4
