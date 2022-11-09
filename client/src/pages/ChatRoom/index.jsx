@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import React, { useState, useEffect, useContext } from "react";
 import AuthContext from "../../AuthProvider";
 import NavBar from "../../CommonComponents/NavBar";
@@ -43,8 +44,12 @@ const useStyles = makeStyles({
   
 function ChatRoom() {
     const { user } =useContext(AuthContext)
-    const classes = useStyles();
+    const classes = useStyles()
     const [eventData, setEventData] = useState([])
+    const [chatRoomTitle, setChatRoomTitle] = useState('')
+    const [chatMembers, setChatMemebers]= useState([])
+    const [chatMessages, setChatMessages]= useState([])
+    const [content, setContent] = useState('')
 
     useEffect(() => {
         fetch(`/users/${user.id}`)
@@ -58,10 +63,30 @@ function ChatRoom() {
         })
       },[user.id])
 
+    const showMessages= (event) => {
+        setChatRoomTitle(`${event.event.name}- ${event.event.location}`)
+        fetch(`/events/${event.event_id}`)
+        .then(res => {
+          if (res.ok) {
+            res.json()
+            .then(data => {
+                setChatMemebers(data.user_events)
+                setChatMessages(data.event_messages)
+            })
+          }
+        })
+      }
+
+      const submitMessageToChat= (e) => {
+        e.preventDefault()
+        setContent('')
+      }
+      
+
     const renderChatEvents = eventData?.map(event => {
         if (event.status === "accepted") {
         return(
-            <ListItem button key={event.id}>
+            <ListItem button key={event.id} onClick={() => showMessages(event)}>
                 <ListItemIcon>
                     <Avatar alt={event.event.name} src={event.event.image_url ? event.event.image_url : "/emptyEventIcon.png" } />
                 </ListItemIcon>
@@ -70,6 +95,36 @@ function ChatRoom() {
         )}
         else return ''
     })
+
+    const renderAdminsToChat = chatMembers.map(member => {
+        if (member.admin === true) {
+            return(
+                <ListItem key={member.user.username}>
+                    <ListItemIcon>
+                        <Avatar alt={member.user.username} src={member.user.avatar_url} />
+                    </ListItemIcon>
+                    <ListItemText primary={member.user.username}>{member.user.username}</ListItemText>
+                </ListItem>
+            )
+        }
+    })
+
+    const renderMembersToChat = chatMembers.map(member => {
+        if (member.admin === false) {
+            return(
+                <ListItem key={member.user.username}>
+                    <ListItemIcon>
+                        <Avatar alt={member.user.username} src={member.user.avatar_url} />
+                    </ListItemIcon>
+                    <ListItemText primary={member.user.username}>{member.user.username}</ListItemText>
+                </ListItem>
+            )
+        }
+    })
+
+    // const renderMessagesToChat = chatMessages.map(message => {
+
+    // })
 
     return(
         <div>
@@ -86,6 +141,9 @@ function ChatRoom() {
                 </Grid>
                 <Grid item xs={7.5}>
                     <List className={classes.messageArea}>
+                        <Typography variant="h4" style={{textAlign:'center', fontWeight:'bold'}}>
+                            {chatRoomTitle}
+                        </Typography>
                         {/* <ListItem key="1">
                             <Grid container>
                                 <Grid item xs={12}>
@@ -118,45 +176,43 @@ function ChatRoom() {
                         </ListItem> */}
                     </List>
                     <Divider />
-                    <Grid container style={{padding: '20px'}}>
-                        <Grid item xs={11}>
-                            <TextField id="outlined-basic-email" label="Message" fullWidth />
+                    {chatRoomTitle ? 
+                    <form onSubmit={submitMessageToChat}>
+                        <Grid container style={{padding: '20px'}}>
+                            <Grid item xs={11}>
+                                <TextField 
+                                    value={content}
+                                    onChange={(e) => setContent(e.target.value)} 
+                                    id="outlined-basic-email" 
+                                    label="Message" 
+                                    fullWidth
+                                />
+                            </Grid>
+                            <Grid item xs={1} align="right">
+                                <Fab button type='submit' color="primary" aria-label="add"><SendIcon /></Fab>
+                            </Grid>
                         </Grid>
-                        <Grid item xs={1} align="right">
-                            <Fab color="primary" aria-label="add"><SendIcon /></Fab>
-                        </Grid>
-                    </Grid>
+                    </form> :
+                    <Typography variant="h4" style={{textAlign:'center', fontWeight:'bold', marginTop:'30px'}}>
+                        Please choose an event to chat in 
+                    </Typography>
+                    }
                 </Grid>
-
                 <Grid item xs={2} className={classes.borderLeft500}>
                     <Grid item xs={12} style={{padding: '10px'}}>
                         <Typography>
                             Admin
                         </Typography>
+                        <List>
+                            {renderAdminsToChat}
+                        </List>
                         <Typography>
                             Members
                         </Typography>
+                        <List>
+                            {renderMembersToChat}
+                        </List>
                     </Grid>
-                    {/* <List>
-                        <ListItem button key="RemySharp">
-                            <ListItemIcon>
-                                <Avatar alt="Remy Sharp" src="https://material-ui.com/static/images/avatar/1.jpg" />
-                            </ListItemIcon>
-                            <ListItemText primary="Remy Sharp">Remy Sharp</ListItemText>
-                        </ListItem>
-                        <ListItem button key="Alice">
-                            <ListItemIcon>
-                                <Avatar alt="Alice" src="https://material-ui.com/static/images/avatar/3.jpg" />
-                            </ListItemIcon>
-                            <ListItemText primary="Alice">Alice</ListItemText>
-                        </ListItem>
-                        <ListItem button key="CindyBaker">
-                            <ListItemIcon>
-                                <Avatar alt="Cindy Baker" src="https://material-ui.com/static/images/avatar/2.jpg" />
-                            </ListItemIcon>
-                            <ListItemText primary="Cindy Baker">Cindy Baker</ListItemText>
-                        </ListItem>
-                    </List> */}
                 </Grid>
                 
             </Grid>

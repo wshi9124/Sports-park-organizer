@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :event_messages, only:[:create]
   resources :users, only:[:create, :update, :show]
   resources :events
   resources :user_events, only: [:create, :update]
