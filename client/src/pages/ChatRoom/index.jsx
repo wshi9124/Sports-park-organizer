@@ -15,7 +15,6 @@ import Fab from '@mui/material/Fab';
 import SendIcon from '@mui/icons-material/Send';
 import Typography from '@mui/material/Typography'
 
-
 const useStyles = makeStyles({
     table: {
       minWidth: 650,
@@ -53,7 +52,6 @@ function ChatRoom() {
           if (res.ok) {
             res.json()
             .then(data => {
-                console.log(data.user_events)
                 setEventData(data.user_events)
             })
           }
@@ -65,7 +63,7 @@ function ChatRoom() {
         return(
             <ListItem button key={event.id}>
                 <ListItemIcon>
-                    <Avatar alt={event.event.name} src={event.event.image_url} />
+                    <Avatar alt={event.event.name} src={event.event.image_url ? event.event.image_url : "/emptyEventIcon.png" } />
                 </ListItemIcon>
                 <ListItemText primary={event.name}>{event.event.name}</ListItemText>
             </ListItem>
@@ -79,10 +77,7 @@ function ChatRoom() {
             <Grid container style={{marginTop:'8vh'}}/>
             <Grid container component={Paper} className={classes.chatSection}>
                 <Grid item xs={2.5} className={classes.borderRight500}>
-                    <Grid item xs={12} style={{padding: '10px'}}>
-                        <TextField label="Search Event By Name" variant="outlined" fullWidth />
-                    </Grid>
-                    <Typography style={{paddingLeft: '11px'}}>
+                    <Typography style={{paddingLeft: '11px', marginTop:'10px'}}>
                         Events
                     </Typography>
                     <List>
@@ -91,7 +86,7 @@ function ChatRoom() {
                 </Grid>
                 <Grid item xs={7.5}>
                     <List className={classes.messageArea}>
-                        <ListItem key="1">
+                        {/* <ListItem key="1">
                             <Grid container>
                                 <Grid item xs={12}>
                                     <ListItemText align="right" primary="Hey man, What's up ?"></ListItemText>
@@ -120,12 +115,12 @@ function ChatRoom() {
                                     <ListItemText align="right" secondary="10:30"></ListItemText>
                                 </Grid>
                             </Grid>
-                        </ListItem>
+                        </ListItem> */}
                     </List>
                     <Divider />
                     <Grid container style={{padding: '20px'}}>
                         <Grid item xs={11}>
-                            <TextField id="outlined-basic-email" label="Type Something" fullWidth />
+                            <TextField id="outlined-basic-email" label="Message" fullWidth />
                         </Grid>
                         <Grid item xs={1} align="right">
                             <Fab color="primary" aria-label="add"><SendIcon /></Fab>
