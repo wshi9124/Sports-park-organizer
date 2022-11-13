@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import ChatMembers from "./ChatMembers";
 import ChatEvents from "./ChatEvents";
 import { ActionCableContext } from "../..";
@@ -51,6 +51,11 @@ function ChatRoom() {
     const cable = useContext(ActionCableContext)
     const [channel, setChannel] = useState(null)
     const [channelMessages, setChannelMessages] = useState([])
+    const messagesEndRef = useRef(null)
+
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+      }
 
     useEffect(() => {
         fetch(`/users/${user.id}`)
@@ -75,6 +80,7 @@ function ChatRoom() {
                 received: (data) => {
                     console.log(data)
                     setChannelMessages((channelMessages) => [...channelMessages, data])
+                    scrollToBottom()
                 }
             })
             setChannel(channel)
@@ -96,6 +102,7 @@ function ChatRoom() {
                 setChatMessages(data.event_messages)
                 setChannelMessages([])
                 setContent('')
+                scrollToBottom()
             })
           }
         })
@@ -185,6 +192,7 @@ function ChatRoom() {
                         </Typography>
                         {renderMessagesToChat}
                         {renderWebSocketMessages}
+                        <div ref={messagesEndRef} />
                     </List>
                     <Divider />
                     {chatRoomTitle ? 
