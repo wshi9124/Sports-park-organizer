@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
+  mount ActionCable.server => '/cable'
   resources :event_messages, only:[:create]
   resources :users, only:[:create, :update, :show]
   resources :events
   resources :user_events, only: [:create, :update]
   
-  
+
 
   #To log in
   post "/login", to: "sessions#create" 

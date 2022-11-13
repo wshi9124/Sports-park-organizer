@@ -6,7 +6,7 @@ class EventsController < ApplicationController
 
     def show
         event= Event.find(params[:id])
-        render json: event, include: ["user_events.user", "event_messages"]
+        render json: event, include: ["user_events.user", "event_messages.user"]
     end
 
     def create

@@ -1,5 +1,8 @@
-/* eslint-disable array-callback-return */
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useContext } from "react";
+import ChatMembers from "./ChatMembers";
+import ChatEvents from "./ChatEvents";
+import { ActionCableContext } from "../..";
 import AuthContext from "../../AuthProvider";
 import NavBar from "../../CommonComponents/NavBar";
 import { makeStyles } from '@mui/styles';
@@ -15,6 +18,8 @@ import Avatar from '@mui/material/Avatar';
 import Fab from '@mui/material/Fab';
 import SendIcon from '@mui/icons-material/Send';
 import Typography from '@mui/material/Typography'
+import moment from "moment";
+
 
 const useStyles = makeStyles({
     table: {
@@ -27,14 +32,6 @@ const useStyles = makeStyles({
     },
     headBG: {
         backgroundColor: '#e0e0e0'
-    },
-    borderRight500: {
-        borderRight: '1px solid #e0e0e0',
-        overflowY: 'auto'
-    },
-    borderLeft500: {
-        borderLeft: '1px solid #e0e0e0',
-        overflowY: 'auto'
     },
     messageArea: {
       height: '82vh',
@@ -49,7 +46,11 @@ function ChatRoom() {
     const [chatRoomTitle, setChatRoomTitle] = useState('')
     const [chatMembers, setChatMemebers]= useState([])
     const [chatMessages, setChatMessages]= useState([])
+    const [currentEvent, setCurrentEvent] = useState(0)
     const [content, setContent] = useState('')
+    const cable = useContext(ActionCableContext)
+    const [channel, setChannel] = useState(null)
+    const [channelMessages, setChannelMessages] = useState([])
 
     useEffect(() => {
         fetch(`/users/${user.id}`)
@@ -63,6 +64,26 @@ function ChatRoom() {
         })
       },[user.id])
 
+      useEffect(() => {
+        if(currentEvent !== 0){
+            const channel = cable.subscriptions.create({
+            channel: "MessagesChannel",
+            id: currentEvent,
+            username: user.username,
+            user_id: user.id
+            }, {
+                received: (data) => {
+                    console.log(data)
+                    setChannelMessages((channelMessages) => [...channelMessages, data])
+                }
+            })
+            setChannel(channel)
+            return () => {
+            channel.unsubscribe()
+            }
+        }
+      }, [currentEvent])
+
     const showMessages= (event) => {
         setChatRoomTitle(`${event.event.name}- ${event.event.location}`)
         fetch(`/events/${event.event_id}`)
@@ -70,8 +91,11 @@ function ChatRoom() {
           if (res.ok) {
             res.json()
             .then(data => {
+                setCurrentEvent(data.id)
                 setChatMemebers(data.user_events)
                 setChatMessages(data.event_messages)
+                setChannelMessages([])
+                setContent('')
             })
           }
         })
@@ -79,10 +103,18 @@ function ChatRoom() {
 
       const submitMessageToChat= (e) => {
         e.preventDefault()
+        channel.send({message: content})
+        fetch('/event_messages', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Accepts: 'application/json',
+            },
+            body: JSON.stringify({content, user_id: user.id, event_id: currentEvent }),
+          })
         setContent('')
       }
       
-
     const renderChatEvents = eventData?.map(event => {
         if (event.status === "accepted") {
         return(
@@ -96,84 +128,63 @@ function ChatRoom() {
         else return ''
     })
 
-    const renderAdminsToChat = chatMembers.map(member => {
-        if (member.admin === true) {
-            return(
-                <ListItem key={member.user.username}>
-                    <ListItemIcon>
-                        <Avatar alt={member.user.username} src={member.user.avatar_url} />
-                    </ListItemIcon>
-                    <ListItemText primary={member.user.username}>{member.user.username}</ListItemText>
-                </ListItem>
-            )
+    const renderMessagesToChat = chatMessages?.map(message => {
+        let alignment= ''
+        if (user.id === message.user_id){
+            alignment = "right"
         }
+        else {
+            alignment = "left"
+        }
+        return(
+            <ListItem key={message.id}>
+                <Grid container>
+                    <Grid item xs={12}>
+                        <ListItemText align={alignment} primary={message.content}></ListItemText>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <ListItemText align={alignment} secondary={`${message.user.username} ${moment(message.created_at).format('YYYY-MM-DD, h:mm a')}`}></ListItemText>
+                    </Grid>
+                </Grid>
+            </ListItem>
+        )
     })
 
-    const renderMembersToChat = chatMembers.map(member => {
-        if (member.admin === false) {
-            return(
-                <ListItem key={member.user.username}>
-                    <ListItemIcon>
-                        <Avatar alt={member.user.username} src={member.user.avatar_url} />
-                    </ListItemIcon>
-                    <ListItemText primary={member.user.username}>{member.user.username}</ListItemText>
-                </ListItem>
-            )
+    const renderWebSocketMessages= channelMessages?.map(message => {
+        let alignment= ''
+        if (user.id === message.id){
+            alignment = "right"
         }
+        else {
+            alignment = "left"
+        }
+        return(
+            <ListItem key={message.id}>
+                <Grid container>
+                    <Grid item xs={12}>
+                        <ListItemText align={alignment} primary={message.data.message}></ListItemText>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <ListItemText align={alignment} secondary={`${message.user} ${moment(new Date()).format('YYYY-MM-DD, h:mm a')}`}></ListItemText>
+                    </Grid>
+                </Grid>
+            </ListItem>
+        )
     })
-
-    // const renderMessagesToChat = chatMessages.map(message => {
-
-    // })
 
     return(
         <div>
             <NavBar/>
             <Grid container style={{marginTop:'8vh'}}/>
             <Grid container component={Paper} className={classes.chatSection}>
-                <Grid item xs={2.5} className={classes.borderRight500}>
-                    <Typography style={{paddingLeft: '11px', marginTop:'10px'}}>
-                        Events
-                    </Typography>
-                    <List>
-                        {renderChatEvents}
-                    </List>
-                </Grid>
+                <ChatEvents renderChatEvents={renderChatEvents}/>
                 <Grid item xs={7.5}>
                     <List className={classes.messageArea}>
                         <Typography variant="h4" style={{textAlign:'center', fontWeight:'bold'}}>
                             {chatRoomTitle}
                         </Typography>
-                        {/* <ListItem key="1">
-                            <Grid container>
-                                <Grid item xs={12}>
-                                    <ListItemText align="right" primary="Hey man, What's up ?"></ListItemText>
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <ListItemText align="right" secondary="09:30"></ListItemText>
-                                </Grid>
-                            </Grid>
-                        </ListItem>
-                        <ListItem key="2">
-                            <Grid container>
-                                <Grid item xs={12}>
-                                    <ListItemText align="left" primary="Hey, Iam Good! What about you ?"></ListItemText>
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <ListItemText align="left" secondary="09:31"></ListItemText>
-                                </Grid>
-                            </Grid>
-                        </ListItem>
-                        <ListItem key="3">
-                            <Grid container>
-                                <Grid item xs={12}>
-                                    <ListItemText align="right" primary="Cool. i am good, let's catch up!"></ListItemText>
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <ListItemText align="right" secondary="10:30"></ListItemText>
-                                </Grid>
-                            </Grid>
-                        </ListItem> */}
+                        {renderMessagesToChat}
+                        {renderWebSocketMessages}
                     </List>
                     <Divider />
                     {chatRoomTitle ? 
@@ -198,23 +209,7 @@ function ChatRoom() {
                     </Typography>
                     }
                 </Grid>
-                <Grid item xs={2} className={classes.borderLeft500}>
-                    <Grid item xs={12} style={{padding: '10px'}}>
-                        <Typography>
-                            Admin
-                        </Typography>
-                        <List>
-                            {renderAdminsToChat}
-                        </List>
-                        <Typography>
-                            Members
-                        </Typography>
-                        <List>
-                            {renderMembersToChat}
-                        </List>
-                    </Grid>
-                </Grid>
-                
+                <ChatMembers chatMembers={chatMembers}/>
             </Grid>
         </div>
     )
