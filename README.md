@@ -23,7 +23,7 @@ If a user types in an incorrect username or password, an error message will appe
 <img width="500" alt="Screen Shot 2022-11-14 at 2 29 12 PM" src="https://user-images.githubusercontent.com/104730743/201763789-8808daaf-5ddf-4bf2-929d-a49b89db4e68.png">
 
 ######
-Users need to pass a number of validations or else an error message will appear.
+Users need to pass a number of validations to make an account or else an error message will appear.
 ######
 <img width="500" alt="Screen Shot 2022-11-13 at 3 05 57 PM" src="https://user-images.githubusercontent.com/104730743/201763845-2eba4b14-64e3-41fe-b433-00a051f19373.png">
 
