@@ -42,6 +42,9 @@ On the create new event page, users can create their own events. They can click 
 ######
 <img width="500" alt="Screen Shot 2022-11-14 at 4 02 57 PM" src="https://user-images.githubusercontent.com/104730743/201765222-53e9672c-6fbe-4fdd-a9d9-8c39816cd309.png">
 
+######
+On the my events page, users can see all the admin, joined, and pending events they are a part of. On the events they are an admin to, users can delete the event or manage the users of the event.  
+######
 <img width="500" alt="Screen Shot 2022-11-14 at 2 26 52 PM" src="https://user-images.githubusercontent.com/104730743/201764217-50fcf691-2520-4822-b75a-ba9d602126f5.png">
 
 <img width="500" alt="Screen Shot 2022-11-14 at 4 04 16 PM" src="https://user-images.githubusercontent.com/104730743/201765238-f0fc3256-8c2d-402e-8f82-da07d6c18862.png">
