@@ -22,6 +22,13 @@ There are protected routes (private routes) for any pages that require the user 
 
 <img width="500" alt="Screen Shot 2022-11-14 at 2 30 30 PM" src="https://user-images.githubusercontent.com/104730743/201763906-576ffa13-a5da-4d45-9667-a685d4af9867.png">
 
+<img width="500" alt="Screen Shot 2022-11-14 at 2 26 25 PM" src="https://user-images.githubusercontent.com/104730743/201764167-cd6308cf-14d3-448f-beb7-058c6f534f7e.png">
+
+<img width="500" alt="Screen Shot 2022-11-14 at 2 31 41 PM" src="https://user-images.githubusercontent.com/104730743/201764121-69fc9c39-396d-4444-a600-fe5e7d4fc424.png">
+
+<img width="500" alt="Screen Shot 2022-11-14 at 2 26 52 PM" src="https://user-images.githubusercontent.com/104730743/201764217-50fcf691-2520-4822-b75a-ba9d602126f5.png">
+
+
 
 # Tables 
 
