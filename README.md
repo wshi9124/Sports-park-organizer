@@ -37,6 +37,9 @@ If a user clicks on an event, a modal will appear that displays the location of 
 ######
 <img width="500" alt="Screen Shot 2022-11-14 at 2 26 25 PM" src="https://user-images.githubusercontent.com/104730743/201764167-cd6308cf-14d3-448f-beb7-058c6f534f7e.png">
 
+######
+On the create new event page, users can create their own events. They can click on the format address button to format their location and pan to the location on google maps. They can also upload an event image for the event.  
+######
 <img width="500" alt="Screen Shot 2022-11-14 at 4 02 57 PM" src="https://user-images.githubusercontent.com/104730743/201765222-53e9672c-6fbe-4fdd-a9d9-8c39816cd309.png">
 
 <img width="500" alt="Screen Shot 2022-11-14 at 2 26 52 PM" src="https://user-images.githubusercontent.com/104730743/201764217-50fcf691-2520-4822-b75a-ba9d602126f5.png">
