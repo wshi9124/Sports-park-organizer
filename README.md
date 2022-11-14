@@ -32,6 +32,9 @@ The home page shows all of the events along with their description and date post
 ######
 <img width="500" alt="Screen Shot 2022-11-14 at 2 30 30 PM" src="https://user-images.githubusercontent.com/104730743/201763906-576ffa13-a5da-4d45-9667-a685d4af9867.png">
 
+######
+If a user clicks on a event, a modal will appear that displays the location of the event on google maps along with the members participating in the event. Users will also see  
+######
 <img width="500" alt="Screen Shot 2022-11-14 at 2 26 25 PM" src="https://user-images.githubusercontent.com/104730743/201764167-cd6308cf-14d3-448f-beb7-058c6f534f7e.png">
 
 <img width="500" alt="Screen Shot 2022-11-14 at 4 02 57 PM" src="https://user-images.githubusercontent.com/104730743/201765222-53e9672c-6fbe-4fdd-a9d9-8c39816cd309.png">
