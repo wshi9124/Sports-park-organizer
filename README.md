@@ -47,6 +47,9 @@ On the my events page, users can see all the admin, joined, and pending events t
 ######
 <img width="500" alt="Screen Shot 2022-11-14 at 2 26 52 PM" src="https://user-images.githubusercontent.com/104730743/201764217-50fcf691-2520-4822-b75a-ba9d602126f5.png">
 
+######
+On the my manage users page, users can accept or decline pending invites.
+######
 <img width="500" alt="Screen Shot 2022-11-14 at 4 04 16 PM" src="https://user-images.githubusercontent.com/104730743/201765238-f0fc3256-8c2d-402e-8f82-da07d6c18862.png">
 
 <img width="500" alt="Screen Shot 2022-11-14 at 2 32 02 PM" src="https://user-images.githubusercontent.com/104730743/201765255-6aa24379-5450-4d3c-b44c-5a0e5263f59e.png">
