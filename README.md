@@ -57,6 +57,9 @@ On the event chat page, users can see the group chats they are a part of. This p
 ######
 <img width="500" alt="Screen Shot 2022-11-14 at 2 32 02 PM" src="https://user-images.githubusercontent.com/104730743/201765255-6aa24379-5450-4d3c-b44c-5a0e5263f59e.png">
 
+######
+Users can also update their profile picture by clicking on the update profile pic tile on the side bar.  
+######
 <img width="500" alt="Screen Shot 2022-11-14 at 2 32 24 PM" src="https://user-images.githubusercontent.com/104730743/201765270-25f72290-e014-45d0-8c17-afdcbe444308.png">
 
 # Tables 
