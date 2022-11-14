@@ -16,6 +16,10 @@ There are protected routes (private routes) for any pages that require the user 
 
 # Features 
 ######
+When a user first enters the site, the Rails backend will check if there is a session. If there is, it will automatically log the user in.
+######
+If a user types in an incorrect username or password, an error message will appear and the inputs will clear
+######
 <img width="500" alt="Screen Shot 2022-11-14 at 2 29 12 PM" src="https://user-images.githubusercontent.com/104730743/201763789-8808daaf-5ddf-4bf2-929d-a49b89db4e68.png">
 
 <img width="500" alt="Screen Shot 2022-11-13 at 3 05 57 PM" src="https://user-images.githubusercontent.com/104730743/201763845-2eba4b14-64e3-41fe-b433-00a051f19373.png">
