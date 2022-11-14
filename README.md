@@ -16,8 +16,16 @@ There are protected routes (private routes) for any pages that require the user 
 
 # Features 
 ######
+<img width="500" alt="Screen Shot 2022-11-14 at 2 29 12 PM" src="https://user-images.githubusercontent.com/104730743/201763789-8808daaf-5ddf-4bf2-929d-a49b89db4e68.png">
+
+<img width="500" alt="Screen Shot 2022-11-13 at 3 05 57 PM" src="https://user-images.githubusercontent.com/104730743/201763845-2eba4b14-64e3-41fe-b433-00a051f19373.png">
+
+<img width="500" alt="Screen Shot 2022-11-14 at 2 30 30 PM" src="https://user-images.githubusercontent.com/104730743/201763906-576ffa13-a5da-4d45-9667-a685d4af9867.png">
+
 
 # Tables 
+
+<img width="700" alt="Screen Shot 2022-11-14 at 3 54 11 PM" src="https://user-images.githubusercontent.com/104730743/201763757-7c1f8481-b3f9-4ae0-b2cd-6fe1d76fd5ed.png">
 
 # System dependencies
 ######
