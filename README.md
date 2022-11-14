@@ -27,6 +27,9 @@ Users need to pass a number of validations to make an account or else an error m
 ######
 <img width="500" alt="Screen Shot 2022-11-13 at 3 05 57 PM" src="https://user-images.githubusercontent.com/104730743/201763845-2eba4b14-64e3-41fe-b433-00a051f19373.png">
 
+######
+The home page shows all of the events along with their description and date posted. There is also a search bar where users can search an event by name or description
+######
 <img width="500" alt="Screen Shot 2022-11-14 at 2 30 30 PM" src="https://user-images.githubusercontent.com/104730743/201763906-576ffa13-a5da-4d45-9667-a685d4af9867.png">
 
 <img width="500" alt="Screen Shot 2022-11-14 at 2 26 25 PM" src="https://user-images.githubusercontent.com/104730743/201764167-cd6308cf-14d3-448f-beb7-058c6f534f7e.png">
