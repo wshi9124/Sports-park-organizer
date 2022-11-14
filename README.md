@@ -25,7 +25,7 @@ There are protected routes (private routes) for any pages that require the user 
 
 # Tables 
 
-<img width="700" alt="Screen Shot 2022-11-14 at 3 54 11 PM" src="https://user-images.githubusercontent.com/104730743/201763757-7c1f8481-b3f9-4ae0-b2cd-6fe1d76fd5ed.png">
+<img width="600" alt="Screen Shot 2022-11-14 at 3 54 11 PM" src="https://user-images.githubusercontent.com/104730743/201763757-7c1f8481-b3f9-4ae0-b2cd-6fe1d76fd5ed.png">
 
 # System dependencies
 ######
