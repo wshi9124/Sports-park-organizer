@@ -7,7 +7,7 @@ Park-O is a social media site where users can organize park sporting events. Thi
 ######
 Frontend: React, JavaScript, Material UI
 ######
-Backend: Ruby on Rails, PostgreSQL, Action Cable (websocket API), Active Storage (to store product images), Bcrypt (to salt and hash password), Active Records Validations
+Backend: Ruby on Rails, PostgreSQL, Action Cable (websocket API), Active Storage (to store profile pictures), Bcrypt (to salt and hash password), Active Records Validations
 ######
 Other: Google Maps API, Google Geocoding API
 
